@@ -16,4 +16,6 @@ execute with storage psm:data temp:
     $execute store success score .new_name psm.leave_game run data modify storage psm:data players[{uuid:$(uuid)}].name set from storage psm:data temp.name
 
 # if yes, update scoreboards
-execute if score .new_name psm.leave_game matches 1 run function #psm:v1/migrate with storage psm:data args
+execute if score .new_name psm.leave_game matches 1:
+    function #psm:v1/migrate with storage psm:data args
+    function #psm_api:v1/migrate with storage psm:data args
